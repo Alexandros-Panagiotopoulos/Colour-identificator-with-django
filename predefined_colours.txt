@@ -1,0 +1,8 @@
+[
+            {"key": "black", "red": 0, "green": 0, "blue": 0},
+            {"key": "white", "red": 255, "green": 255, "blue": 255},
+            {"key": "grey", "red": 85, "green": 85, "blue": 85},
+            {"key": "navy", "red": 0, "green": 0, "blue": 128},
+            {"key": "teal", "red": 0, "green": 128, "blue": 128},
+            {"key": "silver", "red": 192, "green": 192, "blue": 192},
+]

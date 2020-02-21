@@ -1,21 +1,14 @@
-import numpy as np
 import cv2
-import urllib.request
 import webcolors
 from collections import Counter
+import ast
 
 
 class ColourFinder:
-    def __init__(self, url):
-        self.url = url
-        self.predefined_colours = [
-            {"key": "black", "red": 0, "green": 0, "blue": 0},
-            {"key": "white", "red": 255, "green": 255, "blue": 255},
-            {"key": "grey", "red": 85, "green": 85, "blue": 85},
-            {"key": "navy", "red": 0, "green": 0, "blue": 128},
-            {"key": "teal", "red": 0, "green": 128, "blue": 128},
-            {"key": "silver", "red": 192, "green": 192, "blue": 192},
-        ]
+    def __init__(self, image):
+        self.image = image
+        with open('predefined_colours.txt', 'r') as file_object:
+            self.predefined_colours = ast.literal_eval(file_object.read())
         self.reduced_x_pixels = 100  # controls the size of the pixels sample that handled and speed of code
         self.reduced_y_pixels = 100
         self.max_dist_squared = 255 ** 2 * 3  # maximum squared distance between two corners of rgb space
@@ -57,10 +50,7 @@ class ColourFinder:
                    key=counter.get)  # the colour of most pixels or None if most pixels has no close matched colour
 
     def find_images_dominant_colour(self):
-        response = urllib.request.urlopen(self.url)
-        image = np.asarray(bytearray(response.read()), dtype="uint8")
-        image = cv2.imdecode(image, cv2.IMREAD_COLOR)
-        image = cv2.resize(image, (self.reduced_x_pixels, self.reduced_y_pixels))
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        dominant_colour = self.calculate_dominant_colour_of_all_pixels(image)
+        self.image = cv2.resize(self.image, (self.reduced_x_pixels, self.reduced_y_pixels))
+        self.image = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
+        dominant_colour = self.calculate_dominant_colour_of_all_pixels(self.image)
         return dominant_colour
