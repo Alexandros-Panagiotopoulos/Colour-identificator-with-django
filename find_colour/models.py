@@ -8,7 +8,7 @@ class ColourFinder:
     def __init__(self, image):
         self.image = image
         with open('predefined_colours.txt', 'r') as file_object:
-            self.predefined_colours = ast.literal_eval(file_object.read())
+            self.predefined_colours = ast.literal_eval(file_object.read())  # read predefined colours as a list of dicts
         self.reduced_x_pixels = 100  # controls the size of the pixels sample that handled and speed of code
         self.reduced_y_pixels = 100
         self.max_dist_squared = 255 ** 2 * 3  # maximum squared distance between two corners of rgb space
