@@ -47,7 +47,7 @@ class ColourFinder:
                 colours.append(self.get_closest_colour_from_predefined_colours(image[j, i]))
         counter = Counter(colours)
         return max(counter,
-                   key=counter.get)  # the colour of most pixels or None if most pixels has no close matched colour
+                   key=counter.get)  # the colour of most pixels or None if most pixels have no close matched colour
 
     def find_images_dominant_colour(self):
         self.image = cv2.resize(self.image, (self.reduced_x_pixels, self.reduced_y_pixels))

@@ -15,7 +15,7 @@ def colour_picker(request):
     colour = ColourFinder(image)
     dominant_colour = colour.find_images_dominant_colour()
     if not dominant_colour:
-        message = 'Most pixels has no close match among the predefined colours'
+        message = 'Most pixels have no close match among the predefined colours'
         return HttpResponse(message)
     return HttpResponse(dominant_colour)
 
