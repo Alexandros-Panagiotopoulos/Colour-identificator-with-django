@@ -44,7 +44,7 @@ POST /colour
 "dominant_colour"
 ```
 
-A list of predefined colours is stored in the external file 'predefined_colours.txt' in the form of the pseudo-code example provided.  
+A list of predefined colours is stored in a database.  
 A sample of 10000 pixels are being received from the picture and the code finds the closest colour match to the list of stored colours.  
 So it returns the dominant colour without mixing the colours (ie if picture is 51% white and 49% black it will return black).  
 If most pixels have no close match (a factor was introduced to specify what is considered close match), then a message that there is no close match will be returned to the user as a string.
